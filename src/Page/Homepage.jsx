@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Formulario from "../Components/Formulario";
 import Tabla from "../Components/Tabla";
+import "../Style/Homepage.css";
 
-const HomePage = () => {
+const Homepage = () => {
   const [productos, setProductos] = useState(() => {
     const data = localStorage.getItem("productos");
     return data ? JSON.parse(data) : [];
@@ -36,20 +37,21 @@ const HomePage = () => {
   };
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Gestión de Compras</h1>
-      <Formulario
-        agregarProducto={agregarProducto}
-        productoEditando={productoEditando !== null ? productos[productoEditando] : null}
-      />
-      <Tabla
-        productos={productos}
-        editarProducto={editarProducto}
-        eliminarProducto={eliminarProducto}
-      />
+    <div className="homepage-background">
+      <div className="homepage-container">
+        <h1 className="homepage-title">Gestión de Compras</h1>
+        <Formulario
+          agregarProducto={agregarProducto}
+          productoEditando={productoEditando !== null ? productos[productoEditando] : null}
+        />
+        <Tabla
+          productos={productos}
+          editarProducto={editarProducto}
+          eliminarProducto={eliminarProducto}
+        />
+      </div>
     </div>
   );
 };
 
-export default HomePage;
-
+export default Homepage;

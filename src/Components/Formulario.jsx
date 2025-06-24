@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import '../Style/Componente.css';
 
 const Formulario = ({ agregarProducto, productoEditando }) => {
   const [categoria, setCategoria] = useState("Limpieza");
@@ -31,56 +32,50 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 mb-6">
-      <div>
-        <label className="block mb-1 font-medium">Categoría</label>
-        <select
-          className="border rounded p-2 w-full"
-          value={categoria}
-          onChange={(e) => setCategoria(e.target.value)}
-        >
-          <option value="Limpieza">Limpieza</option>
-          <option value="Comestibles">Comestibles</option>
-          <option value="Descartables">Descartables</option>
-          <option value="Bebidas">Bebidas</option>
-        </select>
-      </div>
-      <div>
-        <label className="block mb-1 font-medium">Producto</label>
-        <input
-          type="text"
-          className="border rounded p-2 w-full"
-          value={producto}
-          onChange={(e) => setProducto(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label className="block mb-1 font-medium">Cantidad</label>
-        <input
-          type="number"
-          className="border rounded p-2 w-full"
-          value={cantidad}
-          onChange={(e) => setCantidad(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label className="block mb-1 font-medium">Precio Unitario ($)</label>
-        <input
-          type="number"
-          className="border rounded p-2 w-full"
-          value={precio}
-          onChange={(e) => setPrecio(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-        {productoEditando ? "Aceptar" : "Agregar"}
-      </button>
-    </form>
+    <div className="formulario-container">
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Categoría</label>
+          <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+            <option value="Limpieza">Limpieza</option>
+            <option value="Comestibles">Comestibles</option>
+            <option value="Descartables">Descartables</option>
+            <option value="Bebidas">Bebidas</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Producto</label>
+          <input
+            type="text"
+            value={producto}
+            onChange={(e) => setProducto(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Cantidad</label>
+          <input
+            type="number"
+            value={cantidad}
+            onChange={(e) => setCantidad(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Precio Unitario ($)</label>
+          <input
+            type="number"
+            value={precio}
+            onChange={(e) => setPrecio(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="btn-primary">
+          {productoEditando ? "Aceptar" : "Agregar"}
+        </button>
+      </form>
+    </div>
   );
 };
 
 export default Formulario;
-

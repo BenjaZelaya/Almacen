@@ -1,0 +1,57 @@
+/* Homepage.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.homepage-background {
+  min-height: 100vh;
+  background-image: url('../assets/almacen-foto-fondo.avif'); /* <- RUTA DE LA IMAGEN */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  backdrop-filter: brightness(0.95); /* suaviza imagen */
+}
+
+.homepage-container {
+  background-color: rgba(255, 255, 255, 0.85); /* fondo translúcido */
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1d4ed8;
+}
+
+.formulario-container {
+  background-color: rgba(255, 255, 255, 0.65); /* más transparente */
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+
+@media (max-width: 768px) {
+  .homepage-container {
+    padding: 1rem;
+  }
+
+  .homepage-title {
+    font-size: 1.5rem;
+  }
+}
+
