@@ -8,7 +8,7 @@ body {
 
 .homepage-background {
   min-height: 100vh;
-  background-image: url('../assets/almacen-foto-fondo.avif'); /* <- RUTA DE LA IMAGEN */
+  background-image: url('../assets/Almacen4k.jpg'); /* <- RUTA DE LA IMAGEN */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -26,6 +26,7 @@ body {
   max-width: 900px;
   width: 100%;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+
 }
 
 .homepage-title {
@@ -44,6 +45,20 @@ body {
   margin-bottom: 2rem;
 }
 
+.btn-sobre-nosotros {
+  background-color: #718021;
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-sobre-nosotros:hover {
+  background-color: #e0ee18;
+}
 
 @media (max-width: 768px) {
   .homepage-container {

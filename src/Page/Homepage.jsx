@@ -37,20 +37,22 @@ const Homepage = () => {
   };
 
   return (
-    <div className="homepage-background">
-      <div className="homepage-container">
-        <h1 className="homepage-title">Gestión de Compras</h1>
-        <Formulario
-          agregarProducto={agregarProducto}
-          productoEditando={productoEditando !== null ? productos[productoEditando] : null}
-        />
-        <Tabla
-          productos={productos}
-          editarProducto={editarProducto}
-          eliminarProducto={eliminarProducto}
-        />
+    <>
+      <div className="homepage-background">
+        <div className="homepage-container">
+          <h1 className="homepage-title">Gestión de Compras</h1>
+          <Formulario
+            agregarProducto={agregarProducto}
+            productoEditando={productoEditando !== null ? productos[productoEditando] : null}
+          />
+          <Tabla
+            productos={productos}
+            editarProducto={editarProducto}
+            eliminarProducto={eliminarProducto}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

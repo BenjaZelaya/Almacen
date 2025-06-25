@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import '../Style/Componente.css';
 
+const productosPorCategoria = {
+  Limpieza: ["Lavandina", "Detergente", "Jabón en Polvo", "Desinfectante", "Desodorante"],
+  Comestibles: ["Fideos", "Arroz", "Azúcar", "Pan", "Pasta", "Cereal", "Cafe",],
+  Descartables: ["Vasos", "Servilletas", "Bandejas", "Cuchillos", "Cuchillas", "Tenedores", "Platos", "Tazas", "Tenedores"],
+  Bebidas: ["Coca Cola", "Pepsi", "Agua Mineral", "Cepita", "Fresh", "Red Bull", "Sprite", "Mirinda", "Smirnoff", "Termidor", "Viña del Bardo"],
+  Lacteos: ["Leche", "Queso", "Yogurt", "Manteca"],
+};
+
 const Formulario = ({ agregarProducto, productoEditando }) => {
   const [categoria, setCategoria] = useState("Limpieza");
   const [producto, setProducto] = useState("");
@@ -31,6 +39,8 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
     setPrecio(0);
   };
 
+  const opcionesProducto = productosPorCategoria[categoria] || [];
+
   return (
     <div className="formulario-container">
       <form onSubmit={handleSubmit}>
@@ -41,17 +51,33 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
             <option value="Comestibles">Comestibles</option>
             <option value="Descartables">Descartables</option>
             <option value="Bebidas">Bebidas</option>
+            <option value="Lacteos">Lacteos</option>
           </select>
         </div>
+
         <div className="form-group">
           <label>Producto</label>
-          <input
-            type="text"
-            value={producto}
+          <select
+            value={opcionesProducto.includes(producto) ? producto : ""}
             onChange={(e) => setProducto(e.target.value)}
-            required
-          />
+          >
+            <option value="">-- Elegir producto --</option>
+            {opcionesProducto.map((p) => (
+              <option key={p} value={p}>{p}</option>
+            ))}
+            <option value="otro">Otro (escribir)</option>
+          </select>
+          {producto === "otro" && (
+            <input
+              type="text"
+              placeholder="Escribir nombre del producto"
+              value={producto === "otro" ? "" : producto}
+              onChange={(e) => setProducto(e.target.value)}
+              required
+            />
+          )}
         </div>
+
         <div className="form-group">
           <label>Cantidad</label>
           <input
@@ -61,6 +87,7 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
             required
           />
         </div>
+
         <div className="form-group">
           <label>Precio Unitario ($)</label>
           <input
@@ -70,6 +97,7 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
             required
           />
         </div>
+
         <button type="submit" className="btn-primary">
           {productoEditando ? "Aceptar" : "Agregar"}
         </button>
@@ -79,3 +107,4 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
 };
 
 export default Formulario;
+
