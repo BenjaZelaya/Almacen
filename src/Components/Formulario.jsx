@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import '../Style/Componente.css';
 
 const productosPorCategoria = {
-  Limpieza: ["Lavandina", "Detergente", "Jabón en Polvo", "Desinfectante", "Desodorante"],
-  Comestibles: ["Fideos", "Arroz", "Azúcar", "Pan", "Pasta", "Cereal", "Cafe",],
-  Descartables: ["Vasos", "Servilletas", "Bandejas", "Cuchillos", "Cuchillas", "Tenedores", "Platos", "Tazas", "Tenedores"],
-  Bebidas: ["Coca Cola", "Pepsi", "Agua Mineral", "Cepita", "Fresh", "Red Bull", "Sprite", "Mirinda", "Smirnoff", "Termidor", "Viña del Bardo"],
-  Lacteos: ["Leche", "Queso", "Yogurt", "Manteca"],
+  Limpieza: ["Lavandina", "Detergente", "Jabón en Polvo", "Desinfectante", "Desodorante", "Otro (escribir)"],
+  Comestibles: ["Fideos", "Arroz", "Azúcar", "Pan", "Pasta", "Cereal", "Cafe", "Otro (escribir)"],
+  Descartables: ["Vasos", "Servilletas", "Bandejas", "Cuchillos", "Cuchillas", "Tenedores", "Platos", "Tazas", "Otro (escribir)"],
+  Bebidas: ["Coca Cola", "Pepsi", "Agua Mineral", "Cepita", "Fresh", "Red Bull", "Sprite", "Mirinda", "Smirnoff", "Termidor", "Viña del Bardo", "Otro (escribir)"],
+  Lacteos: ["Leche", "Queso", "Yogurt", "Manteca", "Otro (escribir)"]
 };
 
 const Formulario = ({ agregarProducto, productoEditando }) => {
@@ -14,6 +14,7 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
   const [producto, setProducto] = useState("");
   const [cantidad, setCantidad] = useState(1);
   const [precio, setPrecio] = useState(0);
+  const [esOtro, setEsOtro] = useState(false);
 
   useEffect(() => {
     if (productoEditando) {
@@ -21,8 +22,19 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
       setProducto(productoEditando.producto);
       setCantidad(productoEditando.cantidad);
       setPrecio(productoEditando.precio);
+      setEsOtro(!productosPorCategoria[productoEditando.categoria]?.includes(productoEditando.producto));
     }
   }, [productoEditando]);
+
+  const handleProductoChange = (value) => {
+    if (value === "Otro (escribir)") {
+      setEsOtro(true);
+      setProducto("");
+    } else {
+      setEsOtro(false);
+      setProducto(value);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,43 +49,49 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
     setProducto("");
     setCantidad(1);
     setPrecio(0);
-  };
-
-  const opcionesProducto = productosPorCategoria[categoria] || [];
+    setEsOtro(false);
+  }
 
   return (
     <div className="formulario-container">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Categoría</label>
-          <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-            <option value="Limpieza">Limpieza</option>
-            <option value="Comestibles">Comestibles</option>
-            <option value="Descartables">Descartables</option>
-            <option value="Bebidas">Bebidas</option>
-            <option value="Lacteos">Lacteos</option>
+          <select
+            value={categoria}
+            onChange={(e) => {
+              setCategoria(e.target.value);
+              setEsOtro(false);
+              setProducto("");
+            }}
+          >
+            {Object.keys(productosPorCategoria).map((cat) => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
           </select>
         </div>
 
         <div className="form-group">
           <label>Producto</label>
           <select
-            value={opcionesProducto.includes(producto) ? producto : ""}
-            onChange={(e) => setProducto(e.target.value)}
+            value={esOtro ? "Otro (escribir)" : producto}
+            onChange={(e) => handleProductoChange(e.target.value)}
           >
-            <option value="">-- Elegir producto --</option>
-            {opcionesProducto.map((p) => (
-              <option key={p} value={p}>{p}</option>
+            <option value="">Seleccionar producto</option>
+            {productosPorCategoria[categoria]?.map((prod) => (
+              <option key={prod} value={prod}>{prod}</option>
             ))}
-            <option value="otro">Otro (escribir)</option>
+            
           </select>
-          {producto === "otro" && (
+
+          {esOtro && (
             <input
               type="text"
-              placeholder="Escribir nombre del producto"
-              value={producto === "otro" ? "" : producto}
+              placeholder="Escriba el producto"
+              value={producto}
               onChange={(e) => setProducto(e.target.value)}
               required
+              style={{ marginTop: '0.5rem' }}
             />
           )}
         </div>
@@ -106,5 +124,4 @@ const Formulario = ({ agregarProducto, productoEditando }) => {
   );
 };
 
-export default Formulario;
-
+export default Formulario

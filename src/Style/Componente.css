@@ -1,4 +1,4 @@
-/* === Formulario === */
+
 
 .formulario-container {
   background: #fff;
@@ -27,7 +27,7 @@
   font-size: 1rem;
 }
 
-/* === Botón primario === */
+
 .btn-primary {
   background-color: #2563eb;
   color: #fff;
@@ -43,7 +43,7 @@
   background-color: #1d4ed8;
 }
 
-/* === Tabla === */
+
 
 .tabla-container {
   overflow-x: auto;
@@ -95,7 +95,7 @@ tr:hover {
   color: white;
 }
 
-/* === Responsive === */
+
 @media (max-width: 768px) {
   .formulario-container {
     padding: 1rem;

@@ -1,4 +1,4 @@
-/* Homepage.css */
+
 
 body {
   margin: 0;
@@ -8,7 +8,7 @@ body {
 
 .homepage-background {
   min-height: 100vh;
-  background-image: url('../assets/Almacen4k.jpg'); /* <- RUTA DE LA IMAGEN */
+  background-image: url('../assets/Almacen4k.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -16,11 +16,11 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: 2rem 1rem;
-  backdrop-filter: brightness(0.95); /* suaviza imagen */
+  backdrop-filter: brightness(0.95); 
 }
 
 .homepage-container {
-  background-color: rgba(255, 255, 255, 0.85); /* fondo translúcido */
+  background-color: rgba(255, 255, 255, 0.85); 
   border-radius: 12px;
   padding: 2rem;
   max-width: 900px;
@@ -38,7 +38,7 @@ body {
 }
 
 .formulario-container {
-  background-color: rgba(255, 255, 255, 0.65); /* más transparente */
+  background-color: rgba(255, 255, 255, 0.65); 
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
